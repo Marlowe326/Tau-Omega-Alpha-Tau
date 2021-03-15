@@ -6,10 +6,10 @@ board = [
     ['♟', '♟', '♟', '♟', '♟', '♟', '♟', '♟'],
     [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
     [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-    [' ', ' ', ' ', ' ', '♗', ' ', ' ', ' '],
+    [' ', ' ', ' ', ' ', '♘', ' ', ' ', ' '],
     [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
     ['♙', '♙', '♙', '♙', '♙', '♙', '♙', '♙'],
-    ['♖', '♘', ' ', '♕', '♔', '♗', '♘', '♖']
+    ['♖', '♘', '♗', '♕', '♔', '♗', ' ', '♖']
 ]
 print(board)
 
@@ -104,6 +104,30 @@ def find_queen_moves(x, y):
     find_bishop_moves(x, y)
     find_rook_moves(x, y)
 
+def find_horsie_moves(x, y):
+    if moves_on_board(x - 1, y - 2):
+        print('Considering two Up and one Left at x:', x - 1, 'and y:', y - 2)
+    if moves_on_board(x + 1, y - 2):
+        print('Considering two Up and one Right at x:', x + 1, 'and y:', y - 2)
+    if moves_on_board(x + 2, y - 1):
+        print('Considering one Up and two Right at x:', x + 2, 'and y:', y - 1)
+    if moves_on_board(x + 2, y + 1):
+        print('Considering one Down and two Right at x:', x + 2, 'and y:', y + 1)
+    if moves_on_board(x + 1, y + 2):
+        print('Considering two Down and one Right at x:', x + 1, 'and y:', y + 2)
+    if moves_on_board(x - 1, y + 2):
+        print('Considering two Down and one Left at x:', x - 1, 'and y:', y + 2)
+    if moves_on_board(x - 2, y + 1):
+        print('Considering one Down and two Left at x:', x - 2, 'and y:', y + 1)
+    if moves_on_board(x - 2, y - 1):
+        print('Considering one Up and two Left at x:', x - 2, 'and y:', y - 1)
+    print()
+    
+    
+
+    
+
+
 def find_all_moves():
     for y in range(len(board)):
         for x in range(len(board[y])):
@@ -123,6 +147,9 @@ def find_all_moves():
             if piece == '♕':
                 print('♕', 'Found Queen at x:', x, 'and y:', y)
                 find_queen_moves(x, y)
+            if piece == '♘':
+                print('♘', 'Found Horsie at x:', x, 'and y:', y)
+                find_horsie_moves(x, y)
 
 find_all_moves()
 
