@@ -6,10 +6,10 @@ board = [
     ['♟', '♟', '♟', '♟', '♟', '♟', '♟', '♟'],
     [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
     [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-    [' ', ' ', ' ', ' ', '♘', ' ', ' ', ' '],
+    [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
     [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
     ['♙', '♙', '♙', '♙', '♙', '♙', '♙', '♙'],
-    ['♖', '♘', '♗', '♕', '♔', '♗', ' ', '♖']
+    ['♖', '♘', '♗', '♕', '♔', '♗', '♘', '♖']
 ]
 print(board)
 
@@ -37,6 +37,24 @@ def moves_on_board(x, y):
     else:
         return True
    
+
+
+# %%
+def colour_of_piece(piece):
+    if piece == '♙':
+        return 'white'
+    elif piece == '♖':
+        return 'white'
+    elif piece == '♘':
+        return 'white'
+    elif piece == '♗':
+        return 'white'
+    elif piece == '♕':
+        return 'white'
+    elif piece == '♔':
+        return 'white'
+    else:
+        return 'black'
 
 
 # %%
@@ -122,36 +140,35 @@ def find_horsie_moves(x, y):
     if moves_on_board(x - 2, y - 1):
         print('Considering one Up and two Left at x:', x - 2, 'and y:', y - 1)
     print()
-    
-    
-
-    
 
 
-def find_all_moves():
+# %%
+def find_all_moves(move_colour):
     for y in range(len(board)):
         for x in range(len(board[y])):
             piece = board[y][x]
-            if piece == '♙':
-                print('♙', 'Found Pawn at x:', x, 'and y:', y)
-                find_pawn_moves(x, y)
-            if piece == '♔':
-                print('♔', 'Found King at x:', x, 'and y:', y)
-                find_king_moves(x, y)
-            if piece == '♖':
-                print('♖', 'Found Rook at x:', x, 'and y:', y)
-                find_rook_moves(x, y)
-            if piece == '♗':
-                print('♗', 'Found Bishop at x:', x, 'and y:', y)
-                find_bishop_moves(x, y)
-            if piece == '♕':
-                print('♕', 'Found Queen at x:', x, 'and y:', y)
-                find_queen_moves(x, y)
-            if piece == '♘':
-                print('♘', 'Found Horsie at x:', x, 'and y:', y)
-                find_horsie_moves(x, y)
+            colour = colour_of_piece(piece)
+            if move_colour == colour:
+                if piece == '♙' or piece == '♟':
+                    print(piece, 'Found Pawn at x:', x, 'and y:', y)
+                    find_pawn_moves(x, y)
+                if piece == '♔' or piece == '♚':
+                    print(piece, 'Found King at x:', x, 'and y:', y)
+                    find_king_moves(x, y)
+                if piece == '♖' or piece == '♜':
+                    print(piece, 'Found Rook at x:', x, 'and y:', y)
+                    find_rook_moves(x, y)
+                if piece == '♗' or piece == '♝':
+                    print(piece, 'Found Bishop at x:', x, 'and y:', y)
+                    find_bishop_moves(x, y)
+                if piece == '♕' or piece == '♛':
+                    print(piece, 'Found Queen at x:', x, 'and y:', y)
+                    find_queen_moves(x, y)
+                if piece == '♘' or piece == '♞':
+                    print(piece, 'Found Horsie at x:', x, 'and y:', y)
+                    find_horsie_moves(x, y)
 
-find_all_moves()
+find_all_moves('black')
 
 
 # %%
